@@ -38,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-draft.outputs.upload_url }} 
-          asset_path: ./cocot46plus_default_${{ steps.create-draft.outputs.tag_name }}.uf2
+          asset_path: ./cocot46plus_default.uf2
           asset_name: cocot46plus_default_${{ steps.create-draft.outputs.tag_name }}.uf2
           asset_content_type: application/uf2
           
