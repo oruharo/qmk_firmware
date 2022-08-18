@@ -6,9 +6,9 @@ name: Build default firmware for BLE Micro Pro
 on:
   # Triggers the workflow on push or pull request events but only for the dev/ble_micro_pro branch
   push:
-    branches: [ dev/ble_micro_pro ]
+    branches: [ xx ]
   pull_request:
-    branches: [ dev/ble_micro_pro ]
+    branches: [ xx ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
