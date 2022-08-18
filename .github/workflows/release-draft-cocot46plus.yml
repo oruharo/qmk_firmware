@@ -1,0 +1,44 @@
+name: Build default firmware for BLE Micro Pro
+ 
+on:
+  push:
+    branches: [ actiontest ]
+  pull_request:
+    branches: [ actiontest ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: qmkfm/base_container
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: pip3 install -r requirements.txt
+        
+      - name: Build firmware
+        run: make cocot46plus:default:uf2
+     
+      #- uses: actions/upload-artifact@v2
+      #  with:
+      #    name: default_firmware_uf2
+      #    path: ./*.uf2
+      
+      - name: Release drafter
+        id: create-draft
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-draft.outputs.upload_url }} 
+          asset_path: ./cocot46plus_default.${{ steps.package-version.outputs.current-version }}.uf2
+          asset_name: cocot46plus_default.${{ steps.package-version.outputs.current-version }}.uf2
+          #asset_content_type: application/zip
+          
