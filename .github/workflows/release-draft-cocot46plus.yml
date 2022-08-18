@@ -18,14 +18,12 @@ jobs:
       
       - name: Install dependencies
         run: pip3 install -r requirements.txt
+
+      - name: xxxxxxxx
+        run: ls -l ; ls -l keyboards/cocot*
         
       - name: Build firmware
         run: make cocot46plus:default:uf2
-     
-      #- uses: actions/upload-artifact@v2
-      #  with:
-      #    name: default_firmware_uf2
-      #    path: ./*.uf2
       
       - name: Release drafter
         id: create-draft
