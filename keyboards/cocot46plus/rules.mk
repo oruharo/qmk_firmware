@@ -9,7 +9,6 @@ CUSTOM_MATRIX = yes # This flag should be on for nrf52
 # Build Options
 #   change yes to no to disable
 #
-POINTING_DEVICE_ENABLE = yes
 BOOTMAGIC_ENABLE = no      # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
 MOUSE_SHARED_EP = no		# Should be disabled for BLE Micro Pro
@@ -30,3 +29,11 @@ AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
 HD44780_ENABLE = no 		# Enable support for HD44780 based LCDs (+400)
 COMBO_ENABLE = yes
+
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = adns5050
+
+OLED_DRIVER_ENABLE = yes
+OLED_ENABLE     = yes
+OLED_DRIVER     = SSD1306
+
