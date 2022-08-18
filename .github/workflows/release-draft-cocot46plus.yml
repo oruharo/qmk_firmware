@@ -2,9 +2,9 @@ name: Build default firmware for BLE Micro Pro
  
 on:
   push:
-    branches: [ actiontest ]
+    branches: [ ble ]
   pull_request:
-    branches: [ actiontest ]
+    branches: [ ble ]
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: actiontest
+          ref: ble
       
       - name: Install dependencies
         run: pip3 install -r requirements.txt
