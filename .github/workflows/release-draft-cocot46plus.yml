@@ -1,4 +1,4 @@
-name: Build default firmware for BLE Micro Pro
+name: Build cocot46plus firmware for BLE Micro Pro
  
 on:
   push:
@@ -19,9 +19,6 @@ jobs:
       - name: Install dependencies
         run: pip3 install -r requirements.txt
 
-      - name: xxxxxxxx
-        run: ls -l ; ls -l keyboards/cocot*
-        
       - name: Build firmware
         run: make cocot46plus:default:uf2
       
