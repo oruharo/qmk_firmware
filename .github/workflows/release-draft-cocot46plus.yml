@@ -36,7 +36,7 @@ jobs:
       - name: version
         env:
           TAG_NAME: ${{ steps.create-draft.outputs.tag_name }}
-        run: echo "VER=v${TAGNAME##*v}" >> $GITHUB_ENV
+        run: echo "VER=v${TAG_NAME##*v}" >> $GITHUB_ENV
 
       - name: Upload Release Asset uf2
         uses: actions/upload-release-asset@v1.0.2
