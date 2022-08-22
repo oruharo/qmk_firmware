@@ -1,5 +1,5 @@
-name-template: "cocot46plus firmware for BMP v$RESOLVED_VERSION 🌈"
-tag-template: "v$RESOLVED_VERSION"
+name-template: "cocot46plus BMP v$RESOLVED_VERSION 🌈"
+tag-template: "cocot46plus-bmp-v$RESOLVED_VERSION"
 categories:
   - title: "🚀 Features"
     labels:
