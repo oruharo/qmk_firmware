@@ -23,7 +23,7 @@ jobs:
         run: make cocot46plus:default:uf2
 
       - name: Build firmware zip
-        run: make cocot46plus:default:zip && unzip cocot46plus_default.zip
+        run: make cocot46plus:default:zip && unzip -o cocot46plus_default.zip
 
       - name: Release drafter
         id: create-draft
