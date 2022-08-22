@@ -1,10 +1,10 @@
 name: Build cocot46plus firmware for BLE Micro Pro
  
 on:
-  push:
-    branches: [ ble ]
-  pull_request:
-    branches: [ ble ]
+  # push:
+  #   branches: [ ble ]
+  # pull_request:
+  #   branches: [ ble ]
   workflow_dispatch:
 
 jobs:
@@ -13,8 +13,8 @@ jobs:
     container: qmkfm/base_container
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ble
+        # with:
+        #   ref: ble
       
       - name: Install dependencies
         run: pip3 install -r requirements.txt
@@ -25,6 +25,8 @@ jobs:
       - name: Release drafter
         id: create-draft
         uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-draft-config-cocot46plus.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -38,4 +40,3 @@ jobs:
           asset_path: ./cocot46plus_default.uf2
           asset_name: cocot46plus_default_${{ steps.create-draft.outputs.tag_name }}.uf2
           asset_content_type: application/uf2
-          
