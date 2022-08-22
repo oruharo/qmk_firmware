@@ -36,7 +36,7 @@ jobs:
       - name: version
         env:
           TAG_NAME: ${{ steps.create-draft.outputs.tag_name }}
-        run: echo "VER=v$${TAGNAME##*v}" >> $GITHUB_ENV
+        run: echo "VER=v${TAGNAME##*v}" >> $GITHUB_ENV
 
       - name: Upload Release Asset uf2
         uses: actions/upload-release-asset@v1.0.2
@@ -45,7 +45,7 @@ jobs:
         with:
           upload_url: ${{ steps.create-draft.outputs.upload_url }} 
           asset_path: ./cocot46plus_default.uf2
-          asset_name: cocot46plus_default_$VER.uf2
+          asset_name: cocot46plus_default_${{ env.VER }}.uf2
           asset_content_type: application/uf2
 
       - name: Upload Release Asset bin
@@ -55,7 +55,7 @@ jobs:
         with:
           upload_url: ${{ steps.create-draft.outputs.upload_url }} 
           asset_path: ./cocot46plus_default.bin
-          asset_name: cocot46plus_default_$VER.bin
+          asset_name: cocot46plus_default_${{ env.VER }}.bin
           asset_content_type: application/bin
 
       - name: Upload Release Asset dat
@@ -65,5 +65,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-draft.outputs.upload_url }} 
           asset_path: ./cocot46plus_default.dat
-          asset_name: cocot46plus_default_$VER.dat
+          asset_name: cocot46plus_default_${{ env.VER }}.dat
           asset_content_type: application/dat
