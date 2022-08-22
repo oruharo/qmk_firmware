@@ -17,11 +17,14 @@ jobs:
         #   ref: ble
       
       - name: Install dependencies
-        run: pip3 install -r requirements.txt
+        run: pip3 install -r requirements.txt && pip3 install nrfutil
 
-      - name: Build firmware
+      - name: Build firmware uf2
         run: make cocot46plus:default:uf2
-      
+
+      - name: Build firmware zip
+        run: make cocot46plus:default:zip && unzip cocot46plus_default.zip
+
       - name: Release drafter
         id: create-draft
         uses: release-drafter/release-drafter@v5
@@ -30,8 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Release Asset
-        id: upload-release-asset 
+      - name: Upload Release Asset uf2
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -40,3 +42,23 @@ jobs:
           asset_path: ./cocot46plus_default.uf2
           asset_name: cocot46plus_default_${{ steps.create-draft.outputs.tag_name }}.uf2
           asset_content_type: application/uf2
+
+      - name: Upload Release Asset bin
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-draft.outputs.upload_url }} 
+          asset_path: ./cocot46plus_default.bin
+          asset_name: cocot46plus_default_${{ steps.create-draft.outputs.tag_name }}.bin
+          asset_content_type: application/bin
+
+      - name: Upload Release Asset dat
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-draft.outputs.upload_url }} 
+          asset_path: ./cocot46plus_default.dat
+          asset_name: cocot46plus_default_${{ steps.create-draft.outputs.tag_name }}.dat
+          asset_content_type: application/dat
