@@ -154,15 +154,8 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 }
 */
 
-int hue_fst = -1;
-int sat_fst = -1;
-int val_fst = -1;
-
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    hue_fst = rgblight_get_hue();
-    sat_fst = rgblight_get_sat();
-    val_fst = rgblight_get_val();
 
     switch (get_highest_layer(state)) {
     case _LOWER:
@@ -178,8 +171,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         cocot_set_scroll_mode(false);
         break;
     default:
-        // rgblight_sethsv_range( 0, 0, 0, 0, 2);
-        rgblight_sethsv_range(hue_fst, sat_fst, val_fst, 0, 2);
+        rgblight_sethsv_range(HSV_OFF, 0, 2);
         cocot_set_scroll_mode(false);
         break;
     }
